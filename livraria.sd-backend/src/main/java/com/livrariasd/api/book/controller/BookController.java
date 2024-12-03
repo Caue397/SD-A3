@@ -30,7 +30,6 @@ public class BookController {
     @PostMapping("/my")
     public ResponseEntity<List<ResponseBookDto>> getMyBooks(@RequestBody GetMyBookDto data) {
         List<ResponseBookDto> books = bookService.getMyBooks(data);
-        System.out.println(books);
         return ResponseEntity.ok(books);
     }
 

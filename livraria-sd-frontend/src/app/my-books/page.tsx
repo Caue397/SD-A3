@@ -1,5 +1,5 @@
 "use client";
-import BookCard from "@/components/ui/book-card.component";
+import MyBookCard from "@/components/ui/my-book.component";
 import useAuthStore from "@/stores/auth.store";
 import useBookStore from "@/stores/book.store";
 import { BookXIcon } from "lucide-react";
@@ -24,7 +24,7 @@ export default function MyBooks() {
         <h1 className="font-bold text-3xl">Meus Livros</h1>
         <div className="flex flex-wrap gap-10">
           {bookStore.myBooks.map((book, index) => (
-            <BookCard key={index} book={book} />
+            <MyBookCard key={index} book={book} />
           ))}
         </div>
       </main>

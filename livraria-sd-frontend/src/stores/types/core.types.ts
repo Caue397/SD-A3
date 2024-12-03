@@ -12,6 +12,7 @@ export type UserData = {
 }
 
 export type MyBook = {
+    id: string,
     name: string,
     author: string,
     price: string,
