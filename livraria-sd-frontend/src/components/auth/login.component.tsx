@@ -14,7 +14,7 @@ export default function Login({
   setOpen: Dispatch<SetStateAction<boolean>>;
   setRegister: Dispatch<SetStateAction<boolean>>;
 }) {
-  const session = useAuthStore((state) => state.session);
+  const authenticate = useAuthStore((state) => state.authenticate);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -23,13 +23,11 @@ export default function Login({
 
   const performLogin = async () => {
     try {
-      const response = await api.post("/auth/login", data);
+      await api.post("/auth/login", data);
+      authenticate();
       setError(null);
       setOpen(false);
-      session.auth = true;
-      session.id = response.data.id;
-      session.name = response.data.name;
-      session.email = response.data.email;
+      setData({ email: "", password: "" });
     } catch (error) {
       setError("Email ou senha incorretos");
     }
@@ -78,7 +76,10 @@ export default function Login({
                 Registre-se agora
               </button>
             </span>
-            <button onClick={performLogin} className="bg-darkColor mt-3 py-2 text-white rounded-lg">
+            <button
+              onClick={performLogin}
+              className="bg-darkColor mt-3 py-2 text-white rounded-lg"
+            >
               Entrar
             </button>
           </div>

@@ -30,11 +30,10 @@ const useBookStore = create<BookStore>((set, state) => ({
     }
   },
   getMyBooks: async (email: string) => {
-    console.log(email)
-    const response = await api.post(`/book/my`, { data: { email } });
+    const response = await api.post(`/book/my`, { email });
     if (response.status === 200) {
       set({
-        myBooks: [state().myBooks, response.data],
+        myBooks: response.data,
       });
     }
   },

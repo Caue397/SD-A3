@@ -1,6 +1,7 @@
 package com.livrariasd.api.book.controller;
 
 import com.livrariasd.api.book.dto.CreateBookDto;
+import com.livrariasd.api.book.dto.GetMyBookDto;
 import com.livrariasd.api.book.dto.ResponseBookDto;
 import com.livrariasd.api.book.dto.UpdateBookDto;
 import com.livrariasd.api.book.entity.Book;
@@ -27,8 +28,8 @@ public class BookController {
     }
 
     @PostMapping("/my")
-    public ResponseEntity<List<ResponseBookDto>> getMyBooks(@RequestBody String email) {
-        List<ResponseBookDto> books = bookService.getMyBooks(email);
+    public ResponseEntity<List<ResponseBookDto>> getMyBooks(@RequestBody GetMyBookDto data) {
+        List<ResponseBookDto> books = bookService.getMyBooks(data);
         System.out.println(books);
         return ResponseEntity.ok(books);
     }

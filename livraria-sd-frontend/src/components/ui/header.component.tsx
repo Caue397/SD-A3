@@ -13,6 +13,11 @@ export default function Header() {
   const [registerModal, setRegisterModal] = useState(false);
   const [bookModal, setBookModal] = useState(false);
   const session = useAuthStore((state) => state.session);
+  const authenticate = useAuthStore((state) => state.authenticate);
+
+  useEffect(() => {
+    authenticate();
+  }, [])
 
   return (
     <header className="z-20 sticky top-0 flex justify-center h-28 text-darkColor w-full bg-lightColor">

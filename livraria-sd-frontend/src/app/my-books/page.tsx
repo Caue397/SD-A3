@@ -7,17 +7,16 @@ import { div } from "motion/react-client";
 import { useEffect } from "react";
 
 export default function MyBooks() {
-  const authStore = useAuthStore((state) => state);
+  const session = useAuthStore((state) => state.session);
   const bookStore = useBookStore((state) => state);
 
-  const fetchMyBooks = async () => {
-    await authStore.authenticate();
-    await bookStore.getMyBooks(authStore.session.email);
-  };
-
   useEffect(() => {
-    fetchMyBooks();
-  }, []);
+    if (!session.isLoading) {
+      bookStore.getMyBooks(session.email);
+    }
+  }, [session.isLoading]);
+
+  console.log(bookStore.myBooks)
 
   return (
     <section className="w-full flex justify-center">

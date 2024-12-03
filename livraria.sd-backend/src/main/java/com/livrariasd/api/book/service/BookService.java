@@ -3,6 +3,7 @@ package com.livrariasd.api.book.service;
 import com.livrariasd.api.auth.entity.User;
 import com.livrariasd.api.auth.repository.AuthRepository;
 import com.livrariasd.api.book.dto.CreateBookDto;
+import com.livrariasd.api.book.dto.GetMyBookDto;
 import com.livrariasd.api.book.dto.ResponseBookDto;
 import com.livrariasd.api.book.dto.UpdateBookDto;
 import com.livrariasd.api.book.entity.Book;
@@ -44,10 +45,8 @@ public class BookService {
         throw new RuntimeException("Book not found");
     }
 
-    public List<ResponseBookDto> getMyBooks(String email) {
-        Optional<User> user = authRepo.findByEmail(email);
-        System.out.println(email);
-        System.out.println("chego");
+    public List<ResponseBookDto> getMyBooks(GetMyBookDto data) {
+        Optional<User> user = authRepo.findByEmail(data.email());
         if (user.isPresent()) {
             return user.get()
                     .getBooks()

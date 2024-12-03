@@ -29,7 +29,7 @@ public class AuthController {
             User user = service.verifyToken(request);
             return ResponseEntity.ok(new ResponseUserDto(user.getId(), user.getUsername(), user.getEmail()));
         } catch (Exception e) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(401).build();
         }
     }
 

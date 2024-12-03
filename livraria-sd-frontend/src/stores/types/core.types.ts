@@ -1,4 +1,5 @@
 export type Session = {
+    isLoading: boolean,
     auth: boolean,
     id: string;
     name: string,

@@ -13,7 +13,7 @@ export default function Register({
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
-  const session = useAuthStore((state) => state.session);
+  const authenticate = useAuthStore((state) => state.authenticate);
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -21,14 +21,9 @@ export default function Register({
   });
   
   const performRegister = async () => {
-    api.post("/auth/register", data).then((res) => {
-        session.auth = true;
-        session.id = res.data.id;
-        session.name = res.data.name;
-        session.email = res.data.email;
-    })
+    api.post("/auth/register", data)
+    authenticate();
     setData({ username: "", email: "", password: "" })
-    console.log(session)
   }
 
   return (

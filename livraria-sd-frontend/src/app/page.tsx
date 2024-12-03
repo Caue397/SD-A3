@@ -8,11 +8,9 @@ import Image from "next/image";
 import { useEffect } from "react";
 
 export default function Home() {
-  const authenticate = useAuthStore((state) => state.authenticate);
   const getBooks = useBookStore((state) => state.getBooks);
 
   useEffect(() => {
-    authenticate()
     getBooks();
   }, [])
 
